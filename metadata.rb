@@ -47,6 +47,8 @@ supports 'scientific'
 supports 'ubuntu'
 
 depends 'yum-epel', '~> 0.5'
+depends 'build-essential'
+depends 'systemd', '= 2.1.3'
 
 recipe 'opendkim::default', 'Installs and configures OpenDKIM.'
 

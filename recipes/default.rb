@@ -18,6 +18,12 @@
 #
 
 include_recipe 'opendkim::_user'
-include_recipe 'opendkim::_from_package'
+
+if node['opendkim']['packages']['from_source']
+  include_recipe 'opendkim::_from_source'
+else
+  include_recipe 'opendkim::_from_package'
+end
+
 include_recipe 'opendkim::_configuration'
 include_recipe 'opendkim::_service'
