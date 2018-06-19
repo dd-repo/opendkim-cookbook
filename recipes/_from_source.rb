@@ -32,17 +32,13 @@ bash 'compile_opendkim_source' do
 end
 
 systemd_service 'opendkim' do
-  description 'OpenDKIM service'
-  install do
-    wanted_by 'multi-user.target'
-  end
-  service do
-    user node['opendkim']['user']
-    group node['opendkim']['group']
-    type 'forking'
-    exec_start "#{node['opendkim']['source']['prefix']}/sbin/opendkim -x #{node['opendkim']['conf_file']} -P /var/run/opendkim/opendkim.pid"
-    restart 'always'
-    restart_sec 10
-    pid_file '/var/run/opendkim/opendkim.pid'
-  end
+  unit_description 'OpenDKIM service'
+  install_wanted_by 'multi-user.target'
+  service_user node['opendkim']['user']
+  service_group node['opendkim']['group']
+  service_type 'forking'
+  service_exec_start "#{node['opendkim']['source']['prefix']}/sbin/opendkim -x #{node['opendkim']['conf_file']} -P /var/run/opendkim/opendkim.pid"
+  service_restart 'always'
+  service_restart_sec 10
+  service_pid_file '/var/run/opendkim/opendkim.pid'
 end

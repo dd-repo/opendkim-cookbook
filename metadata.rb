@@ -25,7 +25,7 @@ description <<-EOH
   (Domain Keys Identified Mail) sender authentication system.
 EOH
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version '2.1.0' # WiP
+version '2.1.1' # WiP
 
 if respond_to?(:source_url)
   source_url "https://github.com/zuazo/#{name}-cookbook"
@@ -48,7 +48,7 @@ supports 'ubuntu'
 
 depends 'yum-epel', '~> 0.5'
 depends 'build-essential'
-depends 'systemd', '= 2.1.3'
+depends 'systemd'
 
 recipe 'opendkim::default', 'Installs and configures OpenDKIM.'
 
